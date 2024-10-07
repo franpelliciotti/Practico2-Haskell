@@ -31,8 +31,12 @@ abs :: Int -> Int
 abs x = if x >= 0 then x else (-1)*x
 
 --Actividad 8 (Definición por pattern matching):
---sumLista :: [Int] -> Int
---sumLista [] = 0 --Caso base
+sumLista :: [Int] -> Int
+sumLista [] = 0 --Caso base
+sumLista (x:xs) = x + sumLista xs
+--Con foldr:
+sumListaFoldr :: [Int] -> Int
+sumListaFoldr = foldr (+) 0
 
 --Actividad 9:
 --potencia :: (Int, Int) -> Int Sin currificar
@@ -141,3 +145,9 @@ fibonacci n = fibonacci (n-1) + fibonacci (n-2)
 length' :: [a] -> Int
 length' [] = 0
 length' (_:xs) = 1 + length' xs
+
+--Aparte:
+drop' :: Int -> [a] -> [a]
+drop' 0 xs = xs
+drop' n [] = []
+drop' n (x:xs) = drop (n-1) xs
